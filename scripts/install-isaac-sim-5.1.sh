@@ -15,6 +15,7 @@ bash py311.sh
 # -----------------------------------------------------------------------------
 # Ref: https://docs.isaacsim.omniverse.nvidia.com/latest/installation/requirements.html
 apt-get install -y vulkan-tools libglu1
+conda install -y gcc=12.1.0 -c conda-forge
 # Build tools
 apt-get install -y cmake build-essential
 
