@@ -13,7 +13,7 @@ apt-get install -y cmake build-essential
 # Install PyTorch
 # Note: Isaac Sim 4.5.0 generally pairs with Torch 2.4/2.5. 
 # We stick to 2.5.1 as it is the latest stable supported by the Lab pip workflow.
-uv pip install -qq torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu118
+uv pip install -qq torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu124
 
 # Clone Isaac Lab
 git clone https://github.com/isaac-sim/IsaacLab.git
