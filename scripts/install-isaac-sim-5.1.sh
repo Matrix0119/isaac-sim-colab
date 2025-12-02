@@ -76,10 +76,6 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv pip install --python $(which python3.11) -qq isaacsim[all,extscache]==5.1.0 --extra-index-url https://pypi.nvidia.com
 
 # -----------------------------------------------------------------------------
-# 4. Shader Cache (Commented Out)
-# -----------------------------------------------------------------------------
-
-# -----------------------------------------------------------------------------
 # 4. Shader Cache (Google Drive Method)
 # -----------------------------------------------------------------------------
 # We use Google Drive to store the cache so you don't have to download/upload to your PC.
