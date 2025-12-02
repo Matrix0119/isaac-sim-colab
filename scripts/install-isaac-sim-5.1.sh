@@ -78,6 +78,46 @@ uv pip install --python $(which python3.11) -qq isaacsim[all,extscache]==5.1.0 -
 # -----------------------------------------------------------------------------
 # 4. Shader Cache (Commented Out)
 # -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# 4. Shader Cache (Google Drive Method)
+# -----------------------------------------------------------------------------
+# We use Google Drive to store the cache so you don't have to download/upload to your PC.
+# The first time you run this, it will take ~30-40 mins to generate the cache.
+# The second time, it will load from Drive in minutes.
+
+# 1. Mount Google Drive
+from google.colab import drive
+drive.mount('/content/drive')
+
+# Define paths
+CACHE_BACKUP_DIR="/content/drive/MyDrive/IsaacSim_5.1_Cache"
+SYS_CACHE_DIR="/usr/local/lib/python3.11/site-packages/omni/cache"
+OV_CACHE_DIR="/root/.cache/ov"
+GL_CACHE_DIR="/root/.cache/nvidia/GLCache"
+
+# 2. Check if we already have the cache on Drive
+if [ -d "$CACHE_BACKUP_DIR" ]; then
+    echo "Found cached shaders on Google Drive! Restoring..."
+    
+    # Restore User Cache
+    mkdir -p $(dirname $SYS_CACHE_DIR)
+    cp -r "$CACHE_BACKUP_DIR/usr-cache/cache" $SYS_CACHE_DIR
+    
+    # Restore OV Cache
+    mkdir -p $(dirname $OV_CACHE_DIR)
+    cp -r "$CACHE_BACKUP_DIR/ov-cache/ov" $OV_CACHE_DIR
+    
+    # Restore GL Cache
+    mkdir -p $(dirname $GL_CACHE_DIR)
+    cp -r "$CACHE_BACKUP_DIR/glcache/GLCache" $GL_CACHE_DIR
+    
+    echo "Cache restored. Isaac Sim should start quickly."
+else
+    echo "No cache found on Drive. Isaac Sim will generate it on first run."
+    echo "AFTER you successfully run Isaac Sim for the first time, run the 'Save Cache' block below."
+fi
+
 # The cache files for 4.5 are NOT compatible with 5.1.0.
 # You must generate new cache on the first run (takes ~30-60 mins).
 # If you have a 5.1.0 cache zip, uncomment and update the URL below.
